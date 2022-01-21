@@ -15,7 +15,18 @@ Options:
     --version     Show version                                                                     [boolean]
     --help        Show help                                                                        [boolean]
 ```
-# Example
+# Example 
+#### With npm exec:
+```bash
+npm exec -- @paddek/pocket-automaton --romSrc D:\Downloads\mister\gb\Gameboy\ --pocketDir ./pocket
+```
+
+#### With npx:
+```bash
+npx @paddek/pocket-automaton --romSrc C:\Users\me\backup-roms --romSrc C:\Users\me\zips\gb.zip --pocketDir .\pocket
+```
+
+#### After global install:
 ```bash
 pocket-automaton --romSrc C:\Users\me\backup-roms --romSrc C:\Users\me\zips\gb.zip --pocketDir .\pocket
 ```

@@ -1,6 +1,6 @@
 {
     "name": "@paddek/pocket-automaton",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Automaticly parses known pocket ips patch resources, scans folders or zip files for matching roms and applies the patches.",
     "main": "index.js",
     "bin": {
@@ -9,7 +9,12 @@
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1"
     },
-    "keywords": ["analogue pocket", "pocket", "ips", "patch"],
+    "keywords": [
+        "analogue pocket",
+        "pocket",
+        "ips",
+        "patch"
+    ],
     "author": "paddek",
     "bugs": {
         "url": "https://github.com/PaddeK/pocket-automaton/issues"
