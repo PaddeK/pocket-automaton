@@ -1,6 +1,6 @@
 {
     "name": "@paddek/pocket-automaton",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "Automaticly parses known pocket ips patch resources, scans folders or zip files for matching roms and applies the patches.",
     "main": "index.js",
     "bin": {

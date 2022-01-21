@@ -18,7 +18,7 @@ Options:
 # Example 
 #### With npm exec:
 ```bash
-npm exec -- @paddek/pocket-automaton --romSrc D:\Downloads\mister\gb\Gameboy\ --pocketDir ./pocket
+npm exec -- @paddek/pocket-automaton --romSrc C:\Users\me\backup-roms --pocketDir .\pocket
 ```
 
 #### With npx:
