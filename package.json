@@ -1,0 +1,93 @@
+{
+    "name": "@paddek/pocket-automaton",
+    "version": "1.0.0",
+    "description": "Automaticly parses known pocket ips patch resources, scans folders or zip files for matching roms and applies the patches.",
+    "main": "index.js",
+    "bin": {
+        "pocket-automaton": "./index.js"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "keywords": ["analogue pocket", "pocket", "ips", "patch"],
+    "author": "paddek",
+    "bugs": {
+        "url": "https://github.com/PaddeK/pocket-automaton/issues"
+    },
+    "homepage": "https://github.com/PaddeK/pocket-automaton#readme",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/PaddeK/pocket-automaton.git"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "adm-zip": "^0.5.9",
+        "centra": "^2.5.0",
+        "jsonpath-plus": "^6.0.1",
+        "marked": "^4.0.10",
+        "progress": "^2.0.3",
+        "readdirp": "^3.6.0",
+        "yargs-parser": "^21.0.0"
+    },
+    "config": {
+        "sources": [
+            {
+                "type": "github",
+                "markdown": "https://raw.githubusercontent.com/JoseJX/analogue-pocket-patches/main/README.md",
+                "name": "$.tokens[?(@.type==='heading' && @.depth===2)].text",
+                "hash": "$.tokens[?(@.type==='paragraph')].tokens[?(@.type==='codespan' && @.text.match(md5))].text",
+                "patch": "$.tokens[?(@.type==='paragraph')].tokens[?(@.type==='link' && githubURL(@.href))].href"
+            },
+            {
+                "type": "github",
+                "markdown": "https://raw.githubusercontent.com/jsky0/analogue-pocket-patches/main/README.md",
+                "name": "$.tokens[?(@.type==='heading' && @.depth===3)].text",
+                "hash": "$.tokens[?(@.type==='list')].items.*.tokens[?(@.type==='text' && @.text.match(md5))].text",
+                "patch": "$.tokens[?(@.type==='list')].items.*.tokens[?(@.type==='text' && githubURL(@.text))].text"
+            },
+            {
+                "type": "github",
+                "markdown": "https://raw.githubusercontent.com/treyturner/analogue-pocket-patches/main/README.md",
+                "name": "$.tokens[?(@.type==='heading' && @.depth===2)].text",
+                "hash": "$.tokens[?(@.type==='paragraph')].tokens[?(@.type==='codespan' && @.text.match(md5))].text",
+                "patch": "$.tokens[?(@.type==='paragraph')].tokens[?(@.type==='link' && githubURL(@.href))].href"
+            },
+            {
+                "type": "github",
+                "markdown": "https://raw.githubusercontent.com/jduckett95/infinest-pocket-patches/main/README.md",
+                "name": "$.tokens[?(@.type==='heading' && @.depth>=3)].text",
+                "hash": "$.tokens[?(@.type==='paragraph')].tokens[?(@.type==='codespan' && @.text.match(md5))].text",
+                "patch": "$.tokens[?(@.type==='paragraph')].tokens[?(@.type==='link' && githubURL(@.href))].href"
+            },
+            {
+                "type": "github",
+                "markdown": "https://raw.githubusercontent.com/jduckett95/misc-pocket-patches/main/r0r0-patches.md",
+                "name": "$.tokens[?(@.type==='heading' && @.depth===2)].text",
+                "hash": "$.tokens[?(@.type==='paragraph')].tokens[?(@.type==='codespan' && @.text.match(md5))].text",
+                "patch": "$.tokens[?(@.type==='paragraph')].tokens[?(@.type==='link' && githubURL(@.href))].href"
+            },
+            {
+                "type": "github",
+                "markdown": "https://raw.githubusercontent.com/jduckett95/misc-pocket-patches/main/README.md",
+                "name": "$.tokens[?(@.type==='heading' && @.depth===3)].text",
+                "hash": "$.tokens[?(@.type==='paragraph')].tokens[?(@.type==='codespan' && @.text.match(md5))].text",
+                "patch": "$.tokens[?(@.type==='paragraph')].tokens[?(@.type==='link' && githubURL(@.href))].href"
+            },
+            {
+                "type": "github",
+                "markdown": "https://raw.githubusercontent.com/tumes/pocket-patches/main/README.md",
+                "name": "$.tokens[?(@.type==='heading' && @.depth===2)].text",
+                "hash": "$.tokens[?(@.type==='paragraph')].tokens[?(@.type==='codespan' && @.text.match(md5))].text",
+                "patch": "$.tokens[?(@.type==='paragraph')].tokens[?(@.type==='link' && githubURL(@.href))].href"
+            },
+            {
+                "type": "gist",
+                "markdown": "https://gist.githubusercontent.com/BestPig/528fb9a19cbb638fac1278a641041881/raw/analogue-pocket-game-patches.md",
+                "name": "$.tokens[?(@.type==='paragraph' && @.raw.match(/^common name:/i))].tokens[?(@.type==='codespan' && @property===1)].text",
+                "hash": "$.tokens[?(@.type==='paragraph' && @.raw.match(/^common name:/i))].tokens[?((@.type==='text' || @.type==='codespan') && @.text.match(md5))].text",
+                "patch": "$.tokens[?(@.type==='paragraph' && @.raw.match(/^patch link:/i))].tokens[?(@.type==='link' && @property===1)].href",
+                "skip": "$.tokens[?(@.type==='heading' && @.depth===3 && @.text.match(/pokémon red/i))]"
+            }
+        ]
+    }
+}
